@@ -9,6 +9,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 时间数据工具类
+ */
 @SuppressWarnings("ALL")
 public class DatePackerUtil {
 
@@ -237,7 +240,7 @@ public class DatePackerUtil {
                 return false;
             }
         } catch (Exception e) {
-
+            e.getMessage();
         }
         return false;
     }

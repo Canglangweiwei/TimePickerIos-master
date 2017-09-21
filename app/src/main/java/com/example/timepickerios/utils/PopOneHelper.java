@@ -1,8 +1,6 @@
 package com.example.timepickerios.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
@@ -20,11 +18,17 @@ import com.example.timepickerios.R;
 import com.example.timepickerios.picker.LoopListener;
 import com.example.timepickerios.picker.LoopView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 自定义时间选择器
+ */
 @SuppressWarnings("ALL")
 public class PopOneHelper {
 
     private Context context;
-    private PopupWindow pop;
+    private PopupWindow mPopupWindow;
     private View view;
     private OnClickOkListener onClickOkListener;
 
@@ -33,17 +37,29 @@ public class PopOneHelper {
 
     public PopOneHelper(Context context) {
         this.context = context;
-        view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.picker_one, null);
-        pop = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        initPop();
+        view =
+                ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+                        .inflate(R.layout.picker_one, null);
+        mPopupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        initPopupWindow();
     }
 
-    private void initPop() {
-        pop.setAnimationStyle(android.R.style.Animation_InputMethod);
-        pop.setFocusable(true);
-        pop.setOutsideTouchable(false);
-        pop.setBackgroundDrawable(new BitmapDrawable());
-        pop.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+    private void initPopupWindow() {
+        mPopupWindow.setAnimationStyle(android.R.style.Animation_InputMethod);
+        mPopupWindow.setFocusable(false);
+        mPopupWindow.setOutsideTouchable(false);
+        mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+        mPopupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            // 在dismiss中恢复透明度
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+                lp.alpha = 1f;
+                ((Activity) context).getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                ((Activity) context).getWindow().setAttributes(lp);
+            }
+        });
     }
 
     private void initView() {
@@ -53,7 +69,6 @@ public class PopOneHelper {
         if (null == listItem) {
             listItem = new ArrayList<String>();
         }
-
         loopView.setList(listItem);
         loopView.setNotLoop();
         loopView.setCurrentItem(0);
@@ -74,7 +89,7 @@ public class PopOneHelper {
 
             @Override
             public void onClick(View v) {
-                pop.dismiss();
+                mPopupWindow.dismiss();
             }
         });
 
@@ -82,7 +97,7 @@ public class PopOneHelper {
 
             @Override
             public void onClick(View v) {
-                pop.dismiss();
+                mPopupWindow.dismiss();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -103,7 +118,16 @@ public class PopOneHelper {
             Toast.makeText(context, "请初始化您的数据", Toast.LENGTH_LONG).show();
             return;
         }
-        pop.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+        // 产生背景变暗效果
+        WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+        lp.alpha = 0.4f;
+        ((Activity) context).getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        ((Activity) context).getWindow().setAttributes(lp);
+        mPopupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+    }
+
+    public boolean isShowing() {
+        return mPopupWindow.isShowing();
     }
 
     public void setListItem(List<String> listItem) {
@@ -118,7 +142,7 @@ public class PopOneHelper {
      * @param onDismissListener
      */
     public void setOnDismissListener(PopupWindow.OnDismissListener onDismissListener) {
-        pop.setOnDismissListener(onDismissListener);
+        mPopupWindow.setOnDismissListener(onDismissListener);
     }
 
     public void setOnClickOkListener(OnClickOkListener onClickOkListener) {

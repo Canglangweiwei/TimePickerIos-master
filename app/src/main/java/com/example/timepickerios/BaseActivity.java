@@ -17,7 +17,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(initLayoutId());
+        setContentView(loadLayoutResID());
         ButterKnife.bind(this);
         initUi();
         initDatas();
@@ -27,7 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 加载页面
      */
-    protected abstract int initLayoutId();
+    protected abstract int loadLayoutResID();
 
     /**
      * 初始化页面布局
@@ -46,7 +46,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        // 解除ButterKnife绑定
         ButterKnife.unbind(this);
+        super.onDestroy();
     }
 }

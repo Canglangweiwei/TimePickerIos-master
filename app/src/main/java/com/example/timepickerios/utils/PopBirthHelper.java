@@ -1,8 +1,6 @@
 package com.example.timepickerios.utils;
 
-import java.util.Calendar;
-import java.util.List;
-
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
@@ -19,11 +17,17 @@ import com.example.timepickerios.R;
 import com.example.timepickerios.picker.LoopListener;
 import com.example.timepickerios.picker.LoopView;
 
+import java.util.Calendar;
+import java.util.List;
+
+/**
+ * 生日日历日期选择器
+ */
 @SuppressWarnings("ALL")
 public class PopBirthHelper {
 
     private Context context;
-    private PopupWindow pop;
+    private PopupWindow mPopupWindow;
     private View view;
     private OnClickOkListener onClickOkListener;
 
@@ -33,18 +37,28 @@ public class PopBirthHelper {
     public PopBirthHelper(Context context) {
         this.context = context;
         view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.picker_birth, null);
-        pop = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        initPop();
+        mPopupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        initPopupWindow();
         initData();
         initView();
     }
 
-    private void initPop() {
-        pop.setAnimationStyle(android.R.style.Animation_InputMethod);
-        pop.setFocusable(true);
-        pop.setOutsideTouchable(true);
-        pop.setBackgroundDrawable(new BitmapDrawable());
-        pop.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+    private void initPopupWindow() {
+        mPopupWindow.setAnimationStyle(android.R.style.Animation_InputMethod);
+        mPopupWindow.setFocusable(false);
+        mPopupWindow.setOutsideTouchable(false);
+        mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+        mPopupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            // 在dismiss中恢复透明度
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+                lp.alpha = 1f;
+                ((Activity) context).getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                ((Activity) context).getWindow().setAttributes(lp);
+            }
+        });
     }
 
     /**
@@ -161,7 +175,7 @@ public class PopBirthHelper {
 
             @Override
             public void onClick(View v) {
-                pop.dismiss();
+                mPopupWindow.dismiss();
             }
         });
 
@@ -169,7 +183,7 @@ public class PopBirthHelper {
 
             @Override
             public void onClick(View v) {
-                pop.dismiss();
+                mPopupWindow.dismiss();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -184,7 +198,16 @@ public class PopBirthHelper {
      * 显示
      */
     public void show(View view) {
-        pop.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+        // 产生背景变暗效果
+        WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
+        lp.alpha = 0.4f;
+        ((Activity) context).getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        ((Activity) context).getWindow().setAttributes(lp);
+        mPopupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+    }
+
+    public boolean isShowing() {
+        return mPopupWindow.isShowing();
     }
 
     /**
@@ -193,7 +216,7 @@ public class PopBirthHelper {
      * @param onDismissListener
      */
     public void setOnDismissListener(PopupWindow.OnDismissListener onDismissListener) {
-        pop.setOnDismissListener(onDismissListener);
+        mPopupWindow.setOnDismissListener(onDismissListener);
     }
 
     public void setOnClickOkListener(OnClickOkListener onClickOkListener) {

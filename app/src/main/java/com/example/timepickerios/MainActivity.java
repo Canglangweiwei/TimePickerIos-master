@@ -1,5 +1,6 @@
 package com.example.timepickerios;
 
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ public class MainActivity extends BaseActivity {
     private PopOneHelper popOneHelper;
 
     @Override
-    protected int initLayoutId() {
+    protected int loadLayoutResID() {
         return R.layout.activity_main;
     }
 
@@ -39,7 +40,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initDatas() {
-
+        popOneHelper.setListItem(DatePackerUtil.getTimeAllList());
     }
 
     @Override
@@ -58,7 +59,6 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        popOneHelper.setListItem(DatePackerUtil.getTimeAllList());
         popOneHelper.setOnClickOkListener(new PopOneHelper.OnClickOkListener() {
             @Override
             public void onClickOk(String str) {
@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3})
+    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.button})
     void onClickEvent(View view) {
         switch (view.getId()) {
             case R.id.btn1:
@@ -79,6 +79,23 @@ public class MainActivity extends BaseActivity {
             case R.id.btn3:
                 popOneHelper.show(btn3);
                 break;
+            case R.id.button:
+                Toast.makeText(this, "事件没有被分发下去", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
         }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (popBirthHelper != null && popBirthHelper.isShowing()) {
+            return false;
+        } else if (popDateHelper != null && popDateHelper.isShowing()) {
+            return false;
+        } else if (popOneHelper != null && popOneHelper.isShowing()) {
+            return false;
+        }
+        return super.dispatchTouchEvent(event);
     }
 }

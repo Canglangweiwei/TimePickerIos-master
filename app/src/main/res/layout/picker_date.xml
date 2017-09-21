@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@android:color/white"
+        android:background="@color/white"
         android:gravity="center_vertical">
 
         <Button
@@ -16,7 +16,7 @@
             android:layout_width="60dp"
             android:layout_height="34dp"
             android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
+            android:background="@color/alpha_0"
             android:gravity="center"
             android:text="取消" />
 
@@ -27,7 +27,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
-            android:background="@android:color/transparent"
+            android:background="@color/alpha_0"
             android:gravity="center"
             android:text="确定" />
     </RelativeLayout>
@@ -35,7 +35,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="#D8D3D3" />
+        android:background="@color/color_D8D3D3" />
 
     <LinearLayout
         android:layout_width="match_parent"
