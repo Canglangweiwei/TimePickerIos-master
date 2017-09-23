@@ -48,21 +48,21 @@ public class MainActivity extends BaseActivity {
         popBirthHelper.setOnClickOkListener(new PopBirthHelper.OnClickOkListener() {
             @Override
             public void onClickOk(String birthday) {
-                Toast.makeText(MainActivity.this, birthday, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, birthday, Toast.LENGTH_SHORT).show();
             }
         });
 
         popDateHelper.setOnClickOkListener(new PopDateHelper.OnClickOkListener() {
             @Override
             public void onClickOk(String date, String time) {
-                Toast.makeText(MainActivity.this, date + " " + time, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, date + " " + time, Toast.LENGTH_SHORT).show();
             }
         });
 
         popOneHelper.setOnClickOkListener(new PopOneHelper.OnClickOkListener() {
             @Override
             public void onClickOk(String str) {
-                Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT).show();
             }
         });
     }

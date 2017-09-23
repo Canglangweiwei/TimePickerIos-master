@@ -3,7 +3,6 @@ package xyer.toollib.timepicker.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -45,8 +44,8 @@ public class PopBirthHelper {
 
     private void initPopupWindow() {
         mPopupWindow.setAnimationStyle(android.R.style.Animation_InputMethod);
-        mPopupWindow.setFocusable(false);
-        mPopupWindow.setOutsideTouchable(false);
+        mPopupWindow.setFocusable(true);
+        mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
         mPopupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -184,12 +183,7 @@ public class PopBirthHelper {
             @Override
             public void onClick(View v) {
                 mPopupWindow.dismiss();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        onClickOkListener.onClickOk(year + "-" + month + "-" + day);
-                    }
-                }, 200);
+                onClickOkListener.onClickOk(year + "-" + month + "-" + day);
             }
         });
     }
