@@ -1,4 +1,4 @@
-package com.example.timepickerios.utils;
+package xyer.toollib.timepicker.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,12 +13,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.PopupWindow;
 
-import com.example.timepickerios.R;
-import com.example.timepickerios.picker.LoopListener;
-import com.example.timepickerios.picker.LoopView;
-
 import java.util.Calendar;
 import java.util.List;
+
+import xyer.toollib.timepicker.LoopListener;
+import xyer.toollib.timepicker.LoopView;
+import xyer.toollib.timepicker.R;
 
 /**
  * 生日日历日期选择器

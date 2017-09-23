@@ -1,7 +1,4 @@
-package com.example.timepickerios.utils;
-
-import java.util.Calendar;
-import java.util.List;
+package xyer.toollib.timepicker.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,9 +13,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.PopupWindow;
 
-import com.example.timepickerios.R;
-import com.example.timepickerios.picker.LoopListener;
-import com.example.timepickerios.picker.LoopView;
+import java.util.Calendar;
+import java.util.List;
+
+import xyer.toollib.timepicker.LoopListener;
+import xyer.toollib.timepicker.LoopView;
+import xyer.toollib.timepicker.R;
 
 /**
  * 自定义日期选择器
@@ -89,7 +89,6 @@ public class PopDateHelper {
         loopView2.setCurrentItem(0);
 
         loopView1.setListener(new LoopListener() {
-
             @Override
             public void onItemSelect(int item) {
                 String select_date = listDate.get(item);

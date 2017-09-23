@@ -42,9 +42,21 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <com.example.timepickerios.picker.LoopView
-            android:id="@+id/loopView"
+        <xyer.toollib.timepicker.LoopView
+            android:id="@+id/loopView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp" />
+
+        <xyer.toollib.timepicker.LoopView
+            android:id="@+id/loopView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <xyer.toollib.timepicker.LoopView
+            android:id="@+id/loopView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp" />
     </LinearLayout>
 </LinearLayout>

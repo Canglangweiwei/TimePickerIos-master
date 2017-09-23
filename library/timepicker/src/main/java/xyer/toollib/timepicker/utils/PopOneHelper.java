@@ -1,4 +1,4 @@
-package com.example.timepickerios.utils;
+package xyer.toollib.timepicker.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,12 +14,12 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import com.example.timepickerios.R;
-import com.example.timepickerios.picker.LoopListener;
-import com.example.timepickerios.picker.LoopView;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import xyer.toollib.timepicker.LoopListener;
+import xyer.toollib.timepicker.LoopView;
+import xyer.toollib.timepicker.R;
 
 /**
  * 自定义时间选择器
@@ -74,7 +74,6 @@ public class PopOneHelper {
         loopView.setCurrentItem(0);
 
         loopView.setListener(new LoopListener() {
-
             @Override
             public void onItemSelect(int item) {
                 if (TextUtils.isEmpty(_item)) {

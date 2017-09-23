@@ -1,4 +1,4 @@
-package com.example.timepickerios.utils;
+package xyer.toollib.timepicker.utils;
 
 import android.text.TextUtils;
 

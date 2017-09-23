@@ -24,6 +24,7 @@
             android:id="@+id/btnOK"
             android:layout_width="60dp"
             android:layout_height="34dp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
             android:background="@color/alpha_0"
@@ -42,21 +43,16 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <com.example.timepickerios.picker.LoopView
+        <xyer.toollib.timepicker.LoopView
             android:id="@+id/loopView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp" />
+            android:layout_marginRight="10dp" />
 
-        <com.example.timepickerios.picker.LoopView
+        <xyer.toollib.timepicker.LoopView
             android:id="@+id/loopView2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <com.example.timepickerios.picker.LoopView
-            android:id="@+id/loopView3"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="10dp" />
     </LinearLayout>
 </LinearLayout>
