@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -62,8 +63,8 @@ public class PopOneHelper {
     }
 
     private void initView() {
-        Button btnCancel = (Button) mRootView.findViewById(R.id.btnCancel);
-        Button btnOk = (Button) mRootView.findViewById(R.id.btnOK);
+        TextView btnCancel = (TextView) mRootView.findViewById(R.id.btnCancel);
+        TextView btnOk = (TextView) mRootView.findViewById(R.id.btnOK);
         final LoopView loopView = (LoopView) mRootView.findViewById(R.id.loopView);
         if (null == listItem) {
             listItem = new ArrayList<String>();

@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.List;
@@ -27,7 +27,7 @@ public class PopBirthHelper {
 
     private Context context;
     private PopupWindow mPopupWindow;
-    private View view;
+    private View mRootView;
     private OnClickOkListener onClickOkListener;
 
     private List<String> listYear, listMonth, listDay;
@@ -35,8 +35,8 @@ public class PopBirthHelper {
 
     public PopBirthHelper(Context context) {
         this.context = context;
-        view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.picker_birth, null);
-        mPopupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        mRootView = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.picker_birth, null);
+        mPopupWindow = new PopupWindow(mRootView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         initPopupWindow();
         initData();
         initView();
@@ -70,11 +70,11 @@ public class PopBirthHelper {
     }
 
     private void initView() {
-        Button btnCancel = (Button) view.findViewById(R.id.btnCancel);
-        Button btnOk = (Button) view.findViewById(R.id.btnOK);
-        final LoopView loopView1 = (LoopView) view.findViewById(R.id.loopView1);
-        final LoopView loopView2 = (LoopView) view.findViewById(R.id.loopView2);
-        final LoopView loopView3 = (LoopView) view.findViewById(R.id.loopView3);
+        TextView btnCancel = (TextView) mRootView.findViewById(R.id.btnCancel);
+        TextView btnOk = (TextView) mRootView.findViewById(R.id.btnOK);
+        final LoopView loopView1 = (LoopView) mRootView.findViewById(R.id.loopView1);
+        final LoopView loopView2 = (LoopView) mRootView.findViewById(R.id.loopView2);
+        final LoopView loopView3 = (LoopView) mRootView.findViewById(R.id.loopView3);
         loopView1.setList(listYear);
         loopView1.setNotLoop();
 

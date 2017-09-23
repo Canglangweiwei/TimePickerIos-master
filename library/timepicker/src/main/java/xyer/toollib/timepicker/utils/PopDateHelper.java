@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.List;
@@ -27,7 +27,7 @@ public class PopDateHelper {
 
     private Context context;
     private PopupWindow mPopupWindow;
-    private View view;
+    private View mRootView;
     private OnClickOkListener onClickOkListener;
 
     private List<String> listDate, listTime;
@@ -36,8 +36,8 @@ public class PopDateHelper {
 
     public PopDateHelper(Context context) {
         this.context = context;
-        view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.picker_date, null);
-        mPopupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        mRootView = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.picker_date, null);
+        mPopupWindow = new PopupWindow(mRootView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         initPopupWindow();
         initData();
         initView();
@@ -74,10 +74,10 @@ public class PopDateHelper {
     }
 
     private void initView() {
-        Button btnCancel = (Button) view.findViewById(R.id.btnCancel);
-        Button btnOk = (Button) view.findViewById(R.id.btnOK);
-        final LoopView loopView1 = (LoopView) view.findViewById(R.id.loopView1);
-        final LoopView loopView2 = (LoopView) view.findViewById(R.id.loopView2);
+        TextView btnCancel = (TextView) mRootView.findViewById(R.id.btnCancel);
+        TextView btnOk = (TextView) mRootView.findViewById(R.id.btnOK);
+        final LoopView loopView1 = (LoopView) mRootView.findViewById(R.id.loopView1);
+        final LoopView loopView2 = (LoopView) mRootView.findViewById(R.id.loopView2);
         loopView1.setIsViewYear(false);// 不显示年
         loopView1.setList(listDate);
         loopView1.setNotLoop();
