@@ -46,8 +46,8 @@ public class PopDateHelper {
 
     private void initPopupWindow() {
         mPopupWindow.setAnimationStyle(android.R.style.Animation_InputMethod);
-        mPopupWindow.setFocusable(false);
-        mPopupWindow.setOutsideTouchable(false);
+        mPopupWindow.setFocusable(true);
+        mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
         mPopupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {

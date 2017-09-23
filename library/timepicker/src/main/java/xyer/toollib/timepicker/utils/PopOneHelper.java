@@ -29,7 +29,7 @@ public class PopOneHelper {
 
     private Context context;
     private PopupWindow mPopupWindow;
-    private View view;
+    private View mRootView;
     private OnClickOkListener onClickOkListener;
 
     private List<String> listItem;
@@ -37,17 +37,17 @@ public class PopOneHelper {
 
     public PopOneHelper(Context context) {
         this.context = context;
-        view =
+        mRootView =
                 ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
                         .inflate(R.layout.picker_one, null);
-        mPopupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        mPopupWindow = new PopupWindow(mRootView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         initPopupWindow();
     }
 
     private void initPopupWindow() {
         mPopupWindow.setAnimationStyle(android.R.style.Animation_InputMethod);
-        mPopupWindow.setFocusable(false);
-        mPopupWindow.setOutsideTouchable(false);
+        mPopupWindow.setFocusable(true);
+        mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
         mPopupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -63,9 +63,9 @@ public class PopOneHelper {
     }
 
     private void initView() {
-        Button btnCancel = (Button) view.findViewById(R.id.btnCancel);
-        Button btnOk = (Button) view.findViewById(R.id.btnOK);
-        final LoopView loopView = (LoopView) view.findViewById(R.id.loopView);
+        Button btnCancel = (Button) mRootView.findViewById(R.id.btnCancel);
+        Button btnOk = (Button) mRootView.findViewById(R.id.btnOK);
+        final LoopView loopView = (LoopView) mRootView.findViewById(R.id.loopView);
         if (null == listItem) {
             listItem = new ArrayList<String>();
         }
