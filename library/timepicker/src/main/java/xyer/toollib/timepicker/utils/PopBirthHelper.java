@@ -76,16 +76,19 @@ public class PopBirthHelper {
         final LoopView loopView2 = (LoopView) mRootView.findViewById(R.id.loopView2);
         final LoopView loopView3 = (LoopView) mRootView.findViewById(R.id.loopView3);
         loopView1.setList(listYear);
-        loopView1.setNotLoop();
+        // 设置不循环
+//        loopView1.setNotLoop();
 
         Calendar c = Calendar.getInstance();
         loopView1.setCurrentItem(59);// 定位到今年
         loopView2.setList(listMonth);
-        loopView2.setNotLoop();
+        // 设置不循环
+//        loopView2.setNotLoop();
         loopView2.setCurrentItem(0);
 
         loopView3.setList(listDay);
-        loopView3.setNotLoop();
+        // 设置不循环
+//        loopView3.setNotLoop();
         loopView3.setCurrentItem(0);
 
         loopView1.setListener(new LoopListener() {
@@ -94,7 +97,7 @@ public class PopBirthHelper {
             public void onItemSelect(int item) {
                 String select_item = listYear.get(item);
                 if (TextUtils.isEmpty(year)) {
-                    year = listYear.get(59);
+                    year = listYear.get(59).replace("年", "");
                 } else {
                     year = select_item.replace("年", "");
                 }
@@ -112,7 +115,6 @@ public class PopBirthHelper {
             }
         });
         loopView2.setListener(new LoopListener() {
-
             @Override
             public void onItemSelect(int item) {
                 String select_item = listMonth.get(item);
@@ -158,7 +160,6 @@ public class PopBirthHelper {
             }
         });
         loopView3.setListener(new LoopListener() {
-
             @Override
             public void onItemSelect(int item) {
                 String select_item = listDay.get(item);

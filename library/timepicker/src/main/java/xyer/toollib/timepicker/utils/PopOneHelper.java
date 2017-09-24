@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,7 +69,8 @@ public class PopOneHelper {
             listItem = new ArrayList<String>();
         }
         loopView.setList(listItem);
-        loopView.setNotLoop();
+        // 设置不循环
+//        loopView.setNotLoop();
         loopView.setCurrentItem(0);
 
         loopView.setListener(new LoopListener() {

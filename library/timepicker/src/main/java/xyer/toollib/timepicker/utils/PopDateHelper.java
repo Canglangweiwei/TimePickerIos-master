@@ -80,11 +80,13 @@ public class PopDateHelper {
         final LoopView loopView2 = (LoopView) mRootView.findViewById(R.id.loopView2);
         loopView1.setIsViewYear(false);// 不显示年
         loopView1.setList(listDate);
-        loopView1.setNotLoop();
+        // 设置不循环
+//        loopView1.setNotLoop();
         loopView1.setCurrentItem(0);
 
         loopView2.setList(listTime);
-        loopView2.setNotLoop();
+        // 设置不循环
+//        loopView2.setNotLoop();
         loopView2.setCurrentItem(0);
 
         loopView1.setListener(new LoopListener() {
